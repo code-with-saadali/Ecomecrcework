@@ -1,1 +1,10 @@
 @import "tailwindcss";
+
+:root {
+  --font-kumbh-sans: 'Kumbh Sans', sans-serif;
+  --font-geist-mono: 'Geist Mono', monospace;
+}
+
+body {
+  font-family: var(--font-kumbh-sans);
+}

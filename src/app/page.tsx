@@ -6,6 +6,10 @@ import FeaturedCollections from './_components/FeaturedCollections';
 import PopularProduct from './_components/PopularProduct';
 import KnitKnotHero from './_components/KnitKnotHero';
 import Footer from './_components/Footer';
+import Collection from './_components/Collection';
+import Testimonial from './_components/Testimonial';
+import Articales from './_components/Articales';
+import FavouritDicount from './_components/FavouritDicount';
 
 
 const Home = () => {
@@ -17,6 +21,10 @@ const Home = () => {
       <FeaturedCollections/>
       <PopularProduct/>
       <KnitKnotHero/>
+      <Collection/>
+      <Testimonial/>
+      <Articales/>
+      <FavouritDicount/>
       <Footer/>
     </div>
   )

@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Kumbh_Sans, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ScrollProgress } from "./_components/ScrollProgress";
+import Navbar from "./_components/Navbar";
+import Footer from "./_components/Footer";
 
 const kumbhSans = Kumbh_Sans({
   variable: "--font-kumbh-sans",
@@ -29,7 +31,9 @@ export default function RootLayout({
         className={`${kumbhSans.variable} ${geistMono.variable} antialiased`}
       >
         <ScrollProgress />
+        <Navbar/>
         {children}
+        <Footer/>
       </body>
     </html>
   );

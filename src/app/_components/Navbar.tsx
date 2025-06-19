@@ -5,6 +5,7 @@ import { motion, AnimatePresence, Variants } from "framer-motion";
 import { FaSearch, FaShoppingCart } from "react-icons/fa";
 import { IoIosArrowDown } from "react-icons/io";
 import { FiMenu, FiX } from "react-icons/fi";
+import Link from "next/link";
 
 const navItems = ["Home", "New Arrival", "Mens", "Womens", "Shop", "Contact"];
 
@@ -74,13 +75,15 @@ export default function Navbar() {
         transition={{ duration: 0.8, ease: "easeInOut" }}
       >
         {/* Logo */}
-        <motion.div
+       <Link href="/">
+         <motion.div
           className="text-3xl font-serif italic text-black tracking-tight"
           whileHover={{ scale: 1.07 }}
           transition={{ type: "spring", stiffness: 200 }}
         >
           KnitKnot
         </motion.div>
+       </Link>
 
         {/* Desktop Nav */}
         <div className="hidden md:flex gap-14 max-lg:gap-8 text-[16px] font-medium">
@@ -114,9 +117,9 @@ export default function Navbar() {
                       <div className="hover:text-black transition duration-200 border-b border-gray-300 pb-2 cursor-pointer">
                         Home 1
                       </div>
-                      <div className="hover:text-black transition duration-200 cursor-pointer">
+                      <Link href='/home2' className="hover:text-black transition duration-200 cursor-pointer">
                         Home 2
-                      </div>
+                      </Link>
                     </motion.div>
                   )}
                 </AnimatePresence>

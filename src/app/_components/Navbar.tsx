@@ -58,7 +58,9 @@ export default function Navbar({ onCartOpen }: { onCartOpen: () => void }) {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      setShowNavbar(currentScrollY < lastScrollY.current || currentScrollY < 10);
+      setShowNavbar(
+        currentScrollY < lastScrollY.current || currentScrollY < 10
+      );
       lastScrollY.current = currentScrollY;
     };
 
@@ -157,11 +159,12 @@ export default function Navbar({ onCartOpen }: { onCartOpen: () => void }) {
             whileHover={{ scale: 1.2 }}
             whileTap={{ scale: 0.95 }}
             className="relative cursor-pointer"
-            onClick={onCartOpen} 
+            onClick={onCartOpen}
           >
             <FaShoppingCart size={20} />
           </motion.div>
 
+          {/* Mobile Menu Toggle */}
           <div
             className="md:hidden cursor-pointer"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -169,6 +172,41 @@ export default function Navbar({ onCartOpen }: { onCartOpen: () => void }) {
             {isMobileMenuOpen ? <FiX size={22} /> : <FiMenu size={22} />}
           </div>
         </div>
+
+        {/* Mobile Menu */}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              className="absolute top-[100%] left-0 w-full bg-white flex flex-col items-center gap-5 py-10 text-[16px] font-medium z-40"
+            >
+              {/* Home Dropdown */}
+              <div className="flex flex-col gap-2 items-center">
+                <Link href="/" className="cursor-pointer hover:text-black">
+                  Home 1
+                </Link>
+                <Link href="/home2" className="cursor-pointer hover:text-black">
+                  Home 2
+                </Link>
+              </div>
+
+              {/* Other nav items except "Home" */}
+              {navItems
+                .filter((item) => item.name !== "Home")
+                .map((item, index) => (
+                  <Link
+                    href={item.link}
+                    key={index}
+                    className="cursor-pointer hover:text-black"
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+            </motion.div>
+          )}
+        </AnimatePresence>
       </motion.div>
     </motion.nav>
   );

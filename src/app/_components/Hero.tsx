@@ -21,7 +21,7 @@ const Hero = () => {
   return (
     <div
       ref={containerRef}
-      className="min-h-screen flex flex-col justify-center items-center px-4 pt-16 md:pt-24 overflow-hidden relative bg-gradient-to-b from-[#f8f5f2] to-[#eae4dd]"
+      className="min-h-screen flex flex-col justify-center items-center px-4 max-md:pt-34 pt-44 overflow-hidden relative bg-gradient-to-b from-[#f8f5f2] to-[#eae4dd]"
     >
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/concrete-wall.png')] opacity-20" />

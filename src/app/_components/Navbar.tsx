@@ -7,7 +7,14 @@ import { IoIosArrowDown } from "react-icons/io";
 import { FiMenu, FiX } from "react-icons/fi";
 import Link from "next/link";
 
-const navItems = ["Home", "New Arrival", "Mens", "Womens", "Shop", "Contact"];
+const navItems = [
+  { name: "Home", link: "/" },
+  { name: "New Arrival", link: "/arrival" },
+  { name: "Mens", link: "/men" },
+  { name: "Womens", link: "/women" },
+  { name: "Shop", link: "/shop" },
+  { name: "Contact", link: "/contact-us" },
+];
 
 const navItemVariants: Variants = {
   hidden: { opacity: 0, y: -10 },
@@ -42,7 +49,7 @@ const dropdownVariants: Variants = {
   },
 };
 
-export default function Navbar() {
+export default function Navbar({ onCartOpen }: { onCartOpen: () => void }) {
   const [isHomeHovered, setIsHomeHovered] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [showNavbar, setShowNavbar] = useState(true);
@@ -51,9 +58,7 @@ export default function Navbar() {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      setShowNavbar(
-        currentScrollY < lastScrollY.current || currentScrollY < 10
-      );
+      setShowNavbar(currentScrollY < lastScrollY.current || currentScrollY < 10);
       lastScrollY.current = currentScrollY;
     };
 
@@ -74,18 +79,16 @@ export default function Navbar() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeInOut" }}
       >
-        {/* Logo */}
-       <Link href="/">
-         <motion.div
-          className="text-3xl font-serif italic text-black tracking-tight"
-          whileHover={{ scale: 1.07 }}
-          transition={{ type: "spring", stiffness: 200 }}
-        >
-          KnitKnot
-        </motion.div>
-       </Link>
+        <Link href="/">
+          <motion.div
+            className="text-3xl font-serif italic text-black tracking-tight"
+            whileHover={{ scale: 1.07 }}
+            transition={{ type: "spring", stiffness: 200 }}
+          >
+            KnitKnot
+          </motion.div>
+        </Link>
 
-        {/* Desktop Nav */}
         <div className="hidden md:flex gap-14 max-lg:gap-8 text-[16px] font-medium">
           {navItems.map((item, index) => (
             <motion.div
@@ -96,15 +99,21 @@ export default function Navbar() {
               animate="visible"
               variants={navItemVariants}
               whileHover={{ y: -2 }}
-              onMouseEnter={() => item === "Home" && setIsHomeHovered(true)}
-              onMouseLeave={() => item === "Home" && setIsHomeHovered(false)}
+              onMouseEnter={() =>
+                item.name === "Home" && setIsHomeHovered(true)
+              }
+              onMouseLeave={() =>
+                item.name === "Home" && setIsHomeHovered(false)
+              }
             >
-              {item}
-              {item === "Home" && <IoIosArrowDown size={17} />}
+              <Link href={item.link} className="flex items-center gap-1">
+                {item.name}
+                {item.name === "Home" && <IoIosArrowDown size={17} />}
+              </Link>
 
               <div className="absolute bottom-0 left-0 w-full h-[1px] bg-[#242424] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
 
-              {item === "Home" && (
+              {item.name === "Home" && (
                 <AnimatePresence>
                   {isHomeHovered && (
                     <motion.div
@@ -114,10 +123,16 @@ export default function Navbar() {
                       exit="exit"
                       variants={dropdownVariants}
                     >
-                      <div className="hover:text-black transition duration-200 border-b border-gray-300 pb-2 cursor-pointer">
+                      <Link
+                        href="/"
+                        className="hover:text-black transition duration-200 border-b border-gray-300 pb-2"
+                      >
                         Home 1
-                      </div>
-                      <Link href='/home2' className="hover:text-black transition duration-200 cursor-pointer">
+                      </Link>
+                      <Link
+                        href="/home2"
+                        className="hover:text-black transition duration-200"
+                      >
                         Home 2
                       </Link>
                     </motion.div>
@@ -142,11 +157,11 @@ export default function Navbar() {
             whileHover={{ scale: 1.2 }}
             whileTap={{ scale: 0.95 }}
             className="relative cursor-pointer"
+            onClick={onCartOpen} 
           >
             <FaShoppingCart size={20} />
           </motion.div>
 
-          {/* Mobile Menu Toggle */}
           <div
             className="md:hidden cursor-pointer"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -154,30 +169,6 @@ export default function Navbar() {
             {isMobileMenuOpen ? <FiX size={22} /> : <FiMenu size={22} />}
           </div>
         </div>
-
-        {/* Mobile Menu */}
-        <AnimatePresence>
-          {isMobileMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              className="absolute top-[100%] left-0 w-full bg-white flex flex-col items-center gap-5 py-10 text-[16px] font-medium z-40"
-            >
-              <div className="flex flex-col gap-2 items-center">
-                <div className="cursor-pointer hover:text-black">Home 1</div>
-                <div className="cursor-pointer hover:text-black">Home 2</div>
-              </div>
-              {navItems
-                .filter((item) => item !== "Home")
-                .map((item, index) => (
-                  <div key={index} className="cursor-pointer hover:text-black">
-                    {item}
-                  </div>
-                ))}
-            </motion.div>
-          )}
-        </AnimatePresence>
       </motion.div>
     </motion.nav>
   );

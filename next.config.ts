@@ -7,7 +7,8 @@ const nextConfig: NextConfig = {
       "storage.googleapis.com",
       "ik.imagekit.io",
       "randomuser.me",            
-      "ui-avatars.com",           
+      "ui-avatars.com",
+      "i.imgur.com", 
     ],
   },
 };

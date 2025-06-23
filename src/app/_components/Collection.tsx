@@ -66,7 +66,7 @@ const Collection = () => {
                   {item.label}
                 </p>
                 <Link
-                  href="/products"
+                  href="/ProductDetail"
                   className="px-5 py-2 rounded-full text-white bg-white/20 border border-white hover:bg-white hover:text-black transition duration-300"
                 >
                   View All Products

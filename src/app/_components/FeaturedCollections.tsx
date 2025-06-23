@@ -7,14 +7,14 @@ const collections = [
   {
     title: "Men",
     image:
-      "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/92865840-2085-4577-9816-b0a86f16aa3d.png",
-    href: "/shop/men",
+      "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/d8ae11a9-b2ae-4a78-8bbc-101257c1260b.png",
+    href: "/men",
   },
   {
     title: "Women",
     image:
-      "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/d8ae11a9-b2ae-4a78-8bbc-101257c1260b.png",
-    href: "/shop/women",
+      "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/92865840-2085-4577-9816-b0a86f16aa3d.png",
+    href: "/women",
   },
 ];
 
